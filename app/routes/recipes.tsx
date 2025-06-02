@@ -13,20 +13,31 @@ export async function loader() {
 export default function RecipesPage() {
   const { recipes } = useLoaderData<{ recipes: any[] }>();
 
-  console.log('recipes', recipes);
-
   return (
-    <div>
-      <h1>Lista twoich przepisów</h1>
-      <ul>
-        {recipes.map(recipe => (
-          <div>
-            <Link to={`/recipes/${recipe.title}`} key={recipe.id}>
-              {recipe.title}
-            </Link>
+    <div className="space-y-6">
+      <h1 className="text-2xl font-semibold text-gray-900">Your Recipes</h1>
+      
+      <div className="bg-white rounded-2xl shadow-sm">
+        {recipes.length > 0 ? (
+          <div className="divide-y divide-gray-100">
+            {recipes.map(recipe => (
+              <Link
+                to={`/recipes/${recipe.title}`}
+                key={recipe.title}
+                className="block p-6 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg font-medium text-gray-900">
+                  {recipe.title}
+                </h3>
+              </Link>
+            ))}
           </div>
-        ))}
-      </ul>
+        ) : (
+          <div className="p-6 text-center text-gray-500">
+            No recipes added yet
+          </div>
+        )}
+      </div>
     </div>
   );
 }

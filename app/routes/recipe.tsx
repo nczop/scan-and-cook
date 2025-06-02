@@ -17,19 +17,35 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export default function RecipePage() {
   const { recipe } = useLoaderData<{ recipe: any }>();
-
-  console.log('recipe', recipe);
+  const recipeData = recipe[0];
 
   return (
-    <div>
-      <h1>{recipe[0].title}</h1>
-      <ul>
-        {recipe[0].ingredients.map((ingredient: any, index: number) => (
-          <li key={index}>
-            {ingredient.amount} {ingredient.name}
-          </li>
-        ))}
-      </ul>
+    <div className="space-y-6">
+      <div className="bg-white rounded-2xl p-6 shadow-sm">
+        <h1 className="text-2xl font-semibold text-gray-900 mb-6">
+          {recipeData.title}
+        </h1>
+        
+        <div className="space-y-6">
+          <section>
+            <h2 className="text-lg font-medium text-gray-900 mb-4">
+              Ingredients
+            </h2>
+            <ul className="space-y-2">
+              {recipeData.ingredients.map((ingredient: any, index: number) => (
+                <li
+                  key={index}
+                  className="flex items-center bg-gray-50 rounded-lg p-3"
+                >
+                  <span className="text-gray-900">
+                    {ingredient.amount} {ingredient.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }
