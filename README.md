@@ -1,87 +1,114 @@
-# Welcome to React Router!
+# Scan and Cook
 
-A modern, production-ready template for building full-stack React applications using React Router.
+## About the Project
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+Scan and Cook is a web application that allows you to easily digitize paper recipes using artificial intelligence. No more lost recipe cards or manual transcribing - scan your recipes and access them anytime!
 
-## Features
+## Key Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- Scan recipe cards using your phone
+- Upload recipe files from your computer (drag and drop)
+- Process scanned text into electronic format using AI
+- Automatically categorize recipes (breakfast, lunch, desserts, etc.)
+- Edit scanned recipes
+- Save recipes in a database linked to your user account
 
-## Getting Started
+## Technologies
 
-### Installation
+- React 19
+- React Router 7
+- Tailwind CSS
+- Supabase
+- TypeScript
+- Docker
 
-Install the dependencies:
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm or pnpm
+- Docker (optional, for containerized deployment)
+- Supabase account (for database and authentication)
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/scan-and-cook.git
+cd scan-and-cook
+```
+
+2. Install dependencies:
 
 ```bash
 npm install
+# or
+pnpm install
 ```
 
-### Development
+3. Configure environment variables:
+   - Create a `.env` file in the root directory
+   - Add your Supabase credentials:
 
-Start the development server with HMR:
+```
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+## Running the Application in Development Mode
 
 ```bash
 npm run dev
+# or
+pnpm dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The application will be available at `http://localhost:5173`.
 
 ## Building for Production
 
-Create a production build:
-
 ```bash
 npm run build
+# or
+pnpm build
 ```
 
-## Deployment
+## Running in Docker Container
 
-### Docker Deployment
-
-To build and run using Docker:
+To build and run the application in a Docker container:
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+docker build -t scan-and-cook .
+docker run -p 3000:3000 scan-and-cook
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+## Project Structure
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+scan-and-cook/
+├── app/             # Application code
+├── public/          # Static assets
+├── Dockerfile       # Docker configuration
+├── package.json     # Dependencies and scripts
+└── ...
 ```
 
-## Styling
+## Success Criteria
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+- 75% of recipes processed by AI are accepted by the user without major corrections
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-Built with ❤️ using React Router.
+Created for all cooking enthusiasts who value organization and convenience.
