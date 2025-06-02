@@ -14,7 +14,7 @@ export default function BottomNav() {
           className="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-slate-50 group"
         >
           <svg
-            className="w-5 h-5 mb-1 text-slate-500 group-hover:text-blue-600"
+            className="w-5 h-5 mb-1 text-slate-500 group-hover:text-amber-600"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -30,7 +30,7 @@ export default function BottomNav() {
           className="inline-flex flex-col items-center justify-center px-5 hover:bg-slate-50 group"
         >
           <ClipboardDocumentListIcon
-            className="w-5 h-5 mb-1 text-slate-500 group-hover:text-blue-600"
+            className="w-5 h-5 mb-1 text-slate-500 group-hover:text-amber-600"
             aria-hidden="true"
           />
           <span className="sr-only">Recipes</span>
@@ -39,7 +39,7 @@ export default function BottomNav() {
           <Link
             to="/add-recipe"
             data-tooltip-target="tooltip-new"
-            className="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none"
+            className="inline-flex items-center justify-center w-10 h-10 font-medium bg-amber-600 rounded-full hover:bg-amber-700 group focus:ring-4 focus:ring-amber-300 focus:outline-none"
           >
             <svg
               className="w-4 h-4 text-white"
@@ -65,7 +65,7 @@ export default function BottomNav() {
           className="inline-flex flex-col items-center justify-center px-5 hover:bg-slate-50 group"
         >
           <MagnifyingGlassIcon
-            className="w-5 h-5 mb-1 text-slate-500 group-hover:text-blue-600"
+            className="w-5 h-5 mb-1 text-slate-500 group-hover:text-amber-600"
             aria-hidden="true"
           />
           <span className="sr-only">Search</span>
@@ -76,7 +76,7 @@ export default function BottomNav() {
           className="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-slate-50 group"
         >
           <svg
-            className="w-5 h-5 mb-1 text-slate-500 group-hover:text-blue-600"
+            className="w-5 h-5 mb-1 text-slate-500 group-hover:text-amber-600"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

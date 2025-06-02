@@ -7,9 +7,7 @@ export default function AddRecipeForm() {
         <h1 className="text-2xl font-semibold text-gray-900 mb-6">
           Add New Recipe
         </h1>
-
         <Form method="post" className="space-y-6">
-          {/* Basic Info */}
           <div className="space-y-4">
             <div>
               <label
@@ -22,12 +20,11 @@ export default function AddRecipeForm() {
                 type="text"
                 name="title"
                 id="title"
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 placeholder="e.g., Chocolate Chip Cookies"
                 required
               />
             </div>
-
             <div>
               <label
                 htmlFor="description"
@@ -39,11 +36,10 @@ export default function AddRecipeForm() {
                 name="description"
                 id="description"
                 rows={3}
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 placeholder="Brief description of your recipe"
               />
             </div>
-
             <div>
               <label
                 htmlFor="category"
@@ -54,7 +50,7 @@ export default function AddRecipeForm() {
               <select
                 id="category"
                 name="category"
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -68,8 +64,6 @@ export default function AddRecipeForm() {
               </select>
             </div>
           </div>
-
-          {/* Cooking Details */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div>
               <label
@@ -83,7 +77,7 @@ export default function AddRecipeForm() {
                 name="prepTime"
                 id="prepTime"
                 min="0"
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
               />
             </div>
 
@@ -99,7 +93,7 @@ export default function AddRecipeForm() {
                 name="cookTime"
                 id="cookTime"
                 min="0"
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
               />
             </div>
 
@@ -115,12 +109,11 @@ export default function AddRecipeForm() {
                 name="servings"
                 id="servings"
                 min="1"
-                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
               />
             </div>
           </div>
 
-          {/* Ingredients */}
           <div>
             <label
               htmlFor="ingredients"
@@ -132,13 +125,12 @@ export default function AddRecipeForm() {
               name="ingredients"
               id="ingredients"
               rows={5}
-              className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
               placeholder="Enter each ingredient on a new line"
               required
             />
           </div>
 
-          {/* Instructions */}
           <div>
             <label
               htmlFor="instructions"
@@ -150,17 +142,15 @@ export default function AddRecipeForm() {
               name="instructions"
               id="instructions"
               rows={8}
-              className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
               placeholder="Enter the cooking instructions step by step"
               required
             />
           </div>
-
-          {/* Submit Button */}
           <div className="flex justify-end">
             <button
               type="submit"
-              className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="rounded-lg bg-amber-600 px-4 py-2 text-white hover:bg-amber-700 focus:outline-none"
             >
               Save Recipe
             </button>

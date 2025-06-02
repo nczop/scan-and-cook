@@ -1,5 +1,5 @@
 import { useLoaderData } from 'react-router';
-import { getAllRecipeNames, getRecipeByTitle } from '~/lib/db';
+import { getRecipeByTitle } from '~/lib/db';
 import type { Route } from '../../.react-router/types/app/+types/root';
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -25,7 +25,7 @@ export default function RecipePage() {
         <h1 className="text-2xl font-semibold text-gray-900 mb-6">
           {recipeData.title}
         </h1>
-        
+
         <div className="space-y-6">
           <section>
             <h2 className="text-lg font-medium text-gray-900 mb-4">
