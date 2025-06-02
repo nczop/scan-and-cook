@@ -17,7 +17,6 @@ export default function HomePage() {
 
   return (
     <div className="space-y-8">
-      {/* Welcome section */}
       <section className="bg-white rounded-2xl p-6 shadow-sm">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4">
           Welcome to Scan & Cook!
@@ -26,8 +25,6 @@ export default function HomePage() {
           Digitize your favorite recipes and access them anytime, anywhere.
         </p>
       </section>
-
-      {/* Latest recipe section */}
       <section className="bg-white rounded-2xl p-6 shadow-sm">
         <h3 className="text-lg font-medium text-gray-900 mb-4">
           Latest Recipe
@@ -36,8 +33,6 @@ export default function HomePage() {
           <p className="text-gray-500 text-sm">No recipes added yet</p>
         </div>
       </section>
-
-      {/* Categories section */}
       <section className="bg-white rounded-2xl p-6 shadow-sm">
         <h3 className="text-lg font-medium text-gray-900 mb-4">
           Recipe Categories

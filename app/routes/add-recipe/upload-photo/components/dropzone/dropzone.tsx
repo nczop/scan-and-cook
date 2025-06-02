@@ -39,12 +39,7 @@ export default function Dropzone({ onImageSelect, className }: DropzoneProps) {
   };
 
   return (
-    <div
-      className={cn(
-        'flex items-center justify-center w-full',
-        className
-      )}
-    >
+    <div className={cn('flex items-center justify-center w-full', className)}>
       <div
         onClick={() => fileInputRef.current?.click()}
         onDragOver={handleDragOver}
@@ -53,8 +48,8 @@ export default function Dropzone({ onImageSelect, className }: DropzoneProps) {
         className={cn(
           'flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-xl cursor-pointer transition-colors',
           isDragging
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50'
+            ? 'border-amber-500 bg-amber-50'
+            : 'border-gray-300 hover:border-amber-500 hover:bg-amber-50',
         )}
       >
         <div className="flex flex-col items-center justify-center pt-5 pb-6">
