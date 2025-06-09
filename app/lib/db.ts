@@ -1,5 +1,12 @@
 import { supabase } from './supabase';
 
+export interface Recipe {
+  title: string;
+  category_id: number;
+  instructions: string;
+  // ingredients: { name: string; amount: string }[];
+}
+
 export async function getCategories() {
   const { data, error } = await supabase.from('categories').select('*');
 
@@ -35,6 +42,19 @@ export async function getRecipeByTitle(title: string) {
     .from('recipes')
     .select('*')
     .eq('title', title);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function addRecipe(recipe: Recipe) {
+  const { data, error } = await supabase
+    .from('recipes')
+    .insert(recipe)
+    .select();
 
   if (error) {
     throw new Error(error.message);
