@@ -62,3 +62,11 @@ export async function addRecipe(recipe: Recipe) {
 
   return data;
 }
+
+export async function deleteRecipe(title: string) {
+  const { error } = await supabase.from('recipes').delete().eq('title', title);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}

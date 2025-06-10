@@ -1,5 +1,6 @@
-import { Link, useLoaderData } from 'react-router';
-import { getAllRecipeNames } from '~/lib/db';
+import { Link, useLoaderData, Form } from 'react-router';
+import { getAllRecipeNames, deleteRecipe } from '~/lib/db';
+import { TrashIcon } from '@heroicons/react/24/outline';
 
 export async function loader() {
   try {
@@ -7,6 +8,18 @@ export async function loader() {
     return { recipes };
   } catch (error: any) {
     throw new Error(error.message);
+  }
+}
+
+export async function action({ request }: { request: Request }) {
+  const formData = await request.formData();
+  const title = formData.get('title') as string;
+
+  try {
+    await deleteRecipe(title);
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, message: error.message };
   }
 }
 
@@ -21,15 +34,26 @@ export default function RecipesPage() {
         {recipes.length > 0 ? (
           <div className="divide-y divide-gray-100">
             {recipes.map(recipe => (
-              <Link
-                to={`/recipes/${recipe.title}`}
+              <div
                 key={recipe.title}
-                className="block p-6 hover:bg-gray-50 transition-colors"
+                className="flex items-center justify-between p-5 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg font-medium text-gray-900">
-                  {recipe.title}
-                </h3>
-              </Link>
+                <Link to={`/recipes/${recipe.title}`} className="flex-1">
+                  <h3 className="text-lg font-medium text-gray-900">
+                    {recipe.title}
+                  </h3>
+                </Link>
+                <Form method="post" className="ml-4">
+                  <input type="hidden" name="title" value={recipe.title} />
+                  <button
+                    type="submit"
+                    className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                    title="Delete recipe"
+                  >
+                    <TrashIcon className="h-5 w-5" />
+                  </button>
+                </Form>
+              </div>
             ))}
           </div>
         ) : (
