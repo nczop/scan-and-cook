@@ -1,4 +1,16 @@
-export default function Home() {
+import { createClient } from "@/lib/supabase/server";
+
+export default async function Home() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { data: profile } = user
+    ? await supabase.from("profiles").select("is_anonymous, email").eq("id", user.id).single()
+    : { data: null };
+
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
@@ -7,9 +19,16 @@ export default function Home() {
             Scan and Cook
           </h1>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Scan and Cook is a platform that allows you to scan and cook
-            recipes.
+            Cyfrowy przepiśnik — skanuj zdjęcia stron z przepisami i gotuj.
           </p>
+          {user ? (
+            <p className="text-sm text-zinc-500 dark:text-zinc-500">
+              Sesja: {user.id.slice(0, 8)}…
+              {profile?.is_anonymous ? " (gość)" : " (konto)"}
+            </p>
+          ) : (
+            <p className="text-sm text-amber-600">Brak sesji — sprawdź middleware i Anonymous sign-ins w Supabase.</p>
+          )}
         </div>
       </main>
     </div>
