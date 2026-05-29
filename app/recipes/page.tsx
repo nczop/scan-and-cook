@@ -33,9 +33,10 @@ export default async function RecipesPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6 flex items-center justify-between gap-4">
         <h1 className="text-2xl">Moje przepisy</h1>
-        <Button size="icon" asChild aria-label="Dodaj przepis">
+        <Button asChild>
           <Link href="/recipes/new">
             <Plus />
+            Dodaj przepis
           </Link>
         </Button>
       </div>
