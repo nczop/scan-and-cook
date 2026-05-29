@@ -26,9 +26,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
       <article className="rounded-xl border bg-card p-6 md:p-8">
         <header className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="mb-2 text-2xl leading-tight">
-              {recipe.title}
-            </h1>
+            <h1 className="mb-2 text-2xl leading-tight">{recipe.title}</h1>
             <div className="flex flex-wrap gap-2">
               {recipe.isSeed && (
                 <Badge
@@ -44,8 +42,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
                   variant="secondary"
                   className="bg-violet-50 text-violet-800 hover:bg-violet-50"
                 >
-                  <Camera className="mr-1 h-3 w-3" />
-                  Z aparatu
+                  <Camera className="mr-1 h-3 w-3" />Z aparatu
                 </Badge>
               )}
               {recipe.source === "manual" && (
@@ -60,7 +57,7 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
             </div>
           </div>
           <div className="flex shrink-0 gap-2">
-            <Button asChild variant="outline" size="sm">
+            <Button asChild variant="outline">
               <Link href={`/recipes/${recipe.id}/edit`}>
                 <Pencil className="mr-2 h-3.5 w-3.5" />
                 Edytuj

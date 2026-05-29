@@ -21,10 +21,14 @@ export default function LandingPage() {
       <div className="mx-auto max-w-4xl px-6 py-10 md:py-14">
         <nav className="mb-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-xl">
-              <ScanAndCookLogo className="size-14" />
-            </div>
-            <span className="font-semibold text-primary">Scan and Cook</span>
+            <Link
+              href="/"
+              className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-xl outline-offset-2 transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring md:size-18"
+              aria-label="Strona główna"
+            >
+              <ScanAndCookLogo className="size-14 md:size-18" />
+            </Link>
+            <span className="font-semibold text-primary">Scan & Cook</span>
           </div>
         </nav>
 

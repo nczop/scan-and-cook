@@ -13,7 +13,7 @@ Cyfrowy przepiśnik. Użytkownik dodaje przepis na dwa sposoby:
 
 Aplikacja udostępnia listę przepisów, podgląd, edycję i usuwanie. Każdy użytkownik widzi wyłącznie własne przepisy.
 
-**Pierwsze wejście (kluczowe dla portfolio):** rekruter wchodzi na stronę i od razu jest w aplikacji — bez logowania, bez rejestracji. Pod spodem tworzy się anonimowe konto Supabase, dostaje 2-3 przykładowe przepisy z seeda. Może wszystko: skanować, dodawać, edytować. Gdy chce zachować swoje przepisy na stałe, klika **„Załóż konto”** i linkujemy email do tego samego konta — dane zostają.
+**Pierwsze wejście (kluczowe dla portfolio):** rekruter wchodzi na stronę i od razu jest w aplikacji — bez logowania, bez rejestracji. Pod spodem tworzy się anonimowe konto Supabase, dostaje 2-3 przykładowe przepisy z seeda. Może wszystko: skanować, dodawać, edytować. Gdy chce zachować swoje przepisy na stałe, klika **„Załóż konto”** i linkujemy email do tego samego konta — dane zostają. *(Później: na `/` warto dodać kafelek z korzyściami rejestracji — dłuższe trzymanie przepisów i eksport do PDF; zob. §11.)*
 
 ## 2. Stack technologiczny
 
@@ -334,7 +334,7 @@ Małą sekcję projektu z 2-3 liniami opisu (problem → rozwiązanie → tech) 
 - Czas przygotowania, liczba porcji
 - Wyszukiwanie po składnikach
 - Udostępnianie przepisów / publiczne
-- Eksport do PDF / drukowanie
+- **Kafelek na stronie głównej (`/`)** (później) — komunikat, że po **rejestracji** przepisy są **trzymane dłużej** niż przy samym koncie anonimowym (por. cleanup w §3) oraz że będzie można je **wyeksportować do PDF** (implementacja: szablon + biblioteka lub route generujący PDF).
 - Lista zakupów, przeliczanie porcji
 - PWA / tryb offline
 - OAuth (Google), magic link

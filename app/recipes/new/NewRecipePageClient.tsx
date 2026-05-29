@@ -85,22 +85,40 @@ export function NewRecipePageClient() {
         return;
       }
 
-      const { data: row, error: insertError } = await supabase
+      const baseRow = {
+        user_id: user.id,
+        title: data.title,
+        ingredients: data.ingredients,
+        steps: data.steps,
+        notes: data.notes,
+        is_seed: false,
+      };
+
+      let { data: row, error: insertError } = await supabase
         .from("recipes")
-        .insert({
-          user_id: user.id,
-          title: data.title,
-          ingredients: data.ingredients,
-          steps: data.steps,
-          notes: data.notes,
-          is_seed: false,
-          entry_source: entrySource,
-        })
+        .insert({ ...baseRow, entry_source: entrySource })
         .select("id")
         .single();
 
+      // Baza bez migracji `20260530120000_recipes_entry_source.sql` — PostgREST nie zna kolumny.
+      if (
+        insertError?.message.includes("entry_source") ||
+        insertError?.message.includes("schema cache")
+      ) {
+        ({ data: row, error: insertError } = await supabase
+          .from("recipes")
+          .insert(baseRow)
+          .select("id")
+          .single());
+      }
+
       if (insertError) {
         setSubmitError(insertError.message);
+        return;
+      }
+
+      if (!row) {
+        setSubmitError("Brak danych po zapisie — spróbuj ponownie.");
         return;
       }
 
