@@ -1,4 +1,5 @@
 import { RecipeCard } from "@/components/RecipeCard";
+import { ScanAndCookLogo } from "@/components/ScanAndCookLogo";
 import { Button } from "@/components/ui/button";
 import { displayRecipeSource } from "@/lib/recipes/displaySource";
 import { createClient } from "@/lib/supabase/server";
@@ -32,11 +33,20 @@ export default async function RecipesPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6 flex items-center justify-between gap-4">
-        <h1 className="text-2xl">Moje przepisy</h1>
+        <div className="flex min-w-0 items-center gap-2 md:gap-3">
+          <Link
+            href="/"
+            className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-xl outline-offset-2 transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring md:size-18"
+            aria-label="Strona główna"
+          >
+            <ScanAndCookLogo className="size-14 md:size-18" />
+          </Link>
+          <h1 className="text-2xl">Moje przepisy</h1>
+        </div>
         <Button asChild>
           <Link href="/recipes/new">
             <Plus />
-            Dodaj przepis
+            Dodaj
           </Link>
         </Button>
       </div>

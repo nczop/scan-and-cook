@@ -28,6 +28,7 @@ Plik `migrations/20260529120000_profiles_recipes_rls.sql` jest **kopą wdrożone
 1. **SQL Editor** w dashboardzie → **New query**.
 2. Wklej zawartość pliku `migrations/20260529120000_profiles_recipes_rls.sql` z tego folderu.
 3. **Run**. Sprawdź, czy nie ma błędów.
+4. Jeśli przepisy już działają, ale pojawia się błąd o kolumnie **`entry_source`**, uruchom osobno zawartość pliku **`migrations/20260530120000_recipes_entry_source.sql`** (dodaje kolumnę `manual` / `scan` dla badge w UI). Aplikacja przy zapisie najpierw próbuje z `entry_source`; bez tej kolumny i tak zapisze przepis (fallback), ale znacznik źródła w bazie będzie niedostępny do czasu migracji.
 
 ### Opcja B — Supabase CLI
 
