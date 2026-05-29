@@ -1,13 +1,7 @@
 import Link from "next/link";
-import {
-  BookOpen,
-  Camera,
-  List,
-  ListChecks,
-  Pencil,
-  Trash2,
-} from "lucide-react";
+import { BookOpen, Camera, List, ListChecks, Pencil } from "lucide-react";
 import { Badge, Button, Card, CardContent } from "@/components/ui";
+import { RecipeDeleteDialog } from "@/components/RecipeDeleteDialog";
 import type { Recipe } from "@/lib/schemas/recipe";
 
 export type RecipeCardData = Recipe & {
@@ -18,15 +12,14 @@ export type RecipeCardData = Recipe & {
 
 interface RecipeCardProps {
   recipe: RecipeCardData;
-  onDelete?: (id: string) => void;
 }
 
-export function RecipeCard({ recipe, onDelete }: RecipeCardProps) {
+export function RecipeCard({ recipe }: RecipeCardProps) {
   return (
     <Card className="flex h-full flex-col transition-shadow hover:shadow-md">
       <CardContent className="flex h-full flex-col p-5">
         <Link href={`/recipes/${recipe.id}`} className="group mb-2 block">
-          <h3 className="text-base font-medium leading-tight group-hover:underline">
+          <h3 className="text-base leading-tight group-hover:underline">
             {recipe.title}
           </h3>
         </Link>
@@ -47,6 +40,16 @@ export function RecipeCard({ recipe, onDelete }: RecipeCardProps) {
             className="mb-3 self-start bg-violet-50 text-violet-800 hover:bg-violet-50"
           >
             <Camera className="mr-1 h-3 w-3" />Z aparatu
+          </Badge>
+        )}
+
+        {recipe.source === "manual" && (
+          <Badge
+            variant="secondary"
+            className="mb-3 self-start bg-rose-50 text-rose-900 hover:bg-rose-50"
+          >
+            <Pencil className="mr-1 h-3 w-3" />
+            Wpisany ręcznie
           </Badge>
         )}
 
@@ -76,17 +79,12 @@ export function RecipeCard({ recipe, onDelete }: RecipeCardProps) {
                 <Pencil className="h-3.5 w-3.5" />
               </Link>
             </Button>
-            {onDelete && (
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8"
-                aria-label="Usuń przepis"
-                onClick={() => onDelete(recipe.id)}
-              >
-                <Trash2 className="h-3.5 w-3.5" />
-              </Button>
-            )}
+            <RecipeDeleteDialog
+              recipeId={recipe.id}
+              recipeTitle={recipe.title}
+              afterDelete="refresh"
+              triggerClassName="h-8 w-8"
+            />
           </div>
         </div>
       </CardContent>

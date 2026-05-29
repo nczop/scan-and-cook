@@ -16,7 +16,7 @@ export default async function Home() {
     <div className="flex flex-1 flex-col items-center justify-center bg-background font-sans">
       <main className="flex max-w-3xl flex-1 flex-col items-center justify-between bg-card px-16 py-32 sm:items-start">
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+          <h1 className="max-w-xs text-3xl leading-10 tracking-tight text-black dark:text-zinc-50">
             Scan and Cook
           </h1>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
