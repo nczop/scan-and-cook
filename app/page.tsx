@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function Home() {
@@ -12,8 +13,8 @@ export default async function Home() {
     : { data: null };
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="flex flex-1 flex-col items-center justify-center bg-background font-sans">
+      <main className="flex max-w-3xl flex-1 flex-col items-center justify-between bg-card px-16 py-32 sm:items-start">
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             Scan and Cook
@@ -21,6 +22,12 @@ export default async function Home() {
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             Cyfrowy przepiśnik — skanuj zdjęcia stron z przepisami i gotuj.
           </p>
+          <Link
+            href="/recipes"
+            className="text-sm font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-100 dark:hover:text-zinc-300"
+          >
+            Zobacz przykładową listę przepisów (mock)
+          </Link>
           {user ? (
             <p className="text-sm text-zinc-500 dark:text-zinc-500">
               Sesja: {user.id.slice(0, 8)}…
