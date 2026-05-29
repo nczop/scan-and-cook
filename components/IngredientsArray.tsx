@@ -64,37 +64,8 @@ export function IngredientsArray({
       <div className="space-y-2">
         {fields.map((field, index) => (
           <div key={field.id}>
-            {/* Desktop: jeden wiersz z trzema polami */}
-            <div className="hidden grid-cols-[80px_140px_1fr_36px] gap-2 sm:grid">
-              <Input
-                type="number"
-                step="0.25"
-                placeholder="ilość"
-                {...register(`ingredients.${index}.amount`, {
-                  setValueAs: (v) =>
-                    v === "" || v === null ? null : Number(v),
-                })}
-              />
-              <UnitSelect control={control} index={index} />
-              <Input
-                placeholder="np. mąki"
-                {...register(`ingredients.${index}.name`)}
-              />
-              <Button
-                type="button"
-                variant="outline"
-                size="icon"
-                aria-label="Usuń składnik"
-                onClick={() => remove(index)}
-                disabled={fields.length === 1}
-              >
-                <X className="h-3.5 w-3.5" />
-              </Button>
-            </div>
-
-            {/* Mobile: mini-karta z trzema wierszami */}
-            <div className="rounded-lg bg-muted p-3 sm:hidden">
-              <div className="mb-2 flex items-center justify-between">
+            <div className="rounded-lg bg-muted p-3">
+              <div className="mb-2 flex items-center justify-between sm:hidden">
                 <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Składnik {index + 1}
                 </span>
@@ -110,22 +81,40 @@ export function IngredientsArray({
                   <X className="h-3 w-3" />
                 </Button>
               </div>
-              <div className="mb-2 grid grid-cols-[80px_1fr] gap-2">
+
+              <div className="flex flex-col gap-2 sm:grid sm:grid-cols-[80px_140px_minmax(0,1fr)_36px] sm:items-center">
+                <div className="flex flex-row gap-2 sm:contents">
+                  <Input
+                    type="number"
+                    step="0.25"
+                    placeholder="ilość"
+                    className="w-[5.5rem] shrink-0 sm:w-full"
+                    {...register(`ingredients.${index}.amount`, {
+                      setValueAs: (v) =>
+                        v === "" || v === null ? null : Number(v),
+                    })}
+                  />
+                  <div className="min-w-0 flex-1 sm:w-full">
+                    <UnitSelect control={control} index={index} />
+                  </div>
+                </div>
                 <Input
-                  type="number"
-                  step="0.25"
-                  placeholder="ilość"
-                  {...register(`ingredients.${index}.amount`, {
-                    setValueAs: (v) =>
-                      v === "" || v === null ? null : Number(v),
-                  })}
+                  placeholder="np. mąki"
+                  className="min-w-0 w-full sm:min-w-0"
+                  {...register(`ingredients.${index}.name`)}
                 />
-                <UnitSelect control={control} index={index} />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  className="hidden shrink-0 sm:flex"
+                  aria-label="Usuń składnik"
+                  onClick={() => remove(index)}
+                  disabled={fields.length === 1}
+                >
+                  <X className="h-3.5 w-3.5" />
+                </Button>
               </div>
-              <Input
-                placeholder="np. mąki"
-                {...register(`ingredients.${index}.name`)}
-              />
             </div>
 
             {errors.ingredients?.[index]?.name && (

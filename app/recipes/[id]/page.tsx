@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { RecipeDetail } from "@/components/RecipeDetail";
+import { displayRecipeSource } from "@/lib/recipes/displaySource";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function RecipePage({
@@ -27,7 +28,11 @@ export default async function RecipePage({
     steps: row.steps,
     notes: row.notes,
     isSeed: row.is_seed,
-    source: row.source_image_url ? ("scan" as const) : undefined,
+    source: displayRecipeSource({
+      is_seed: row.is_seed,
+      source_image_url: row.source_image_url,
+      entry_source: row.entry_source,
+    }),
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };

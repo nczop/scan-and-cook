@@ -44,7 +44,7 @@ pnpm dlx supabase db push
 |--------|------|
 | `public.profiles` | `id`, `email`, `display_name`, `is_anonymous` (domyślnie `true` w kolumnie), `created_at`. Trigger wstawia na start `id`, `email`, `is_anonymous` z `auth.users`. |
 | Trigger `on_auth_user_created` | Po utworzeniu użytkownika (także anonymous) wstawia wiersz w `profiles`. |
-| `public.recipes` | Przepisy: `user_id`, `title`, `ingredients` / `steps` jako **jsonb** (struktura jak w `lib/schemas/recipe.ts`), `notes`, `is_seed`, opcjonalnie `source_image_url`, znaczniki czasu. |
+| `public.recipes` | Przepisy: `user_id`, `title`, `ingredients` / `steps` jako **jsonb** (struktura jak w `lib/schemas/recipe.ts`), `notes`, `is_seed`, opcjonalnie `source_image_url`, kolumna `entry_source` (`manual` / `scan`, migracja `20260530120000_recipes_entry_source.sql`), znaczniki czasu. |
 | Trigger `recipes_set_updated_at` | Przed `update` na `recipes` ustawia `updated_at`. |
 | RLS | `profiles` i `recipes` — **authenticated** widzi i modyfikuje tylko własne dane (`auth.uid()`). |
 | `grant … authenticated` | Jawne uprawnienia do `select`/`update` na `profiles` oraz pełny CRUD na `recipes` (RLS i tak filtruje). |
