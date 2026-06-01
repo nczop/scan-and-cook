@@ -1,17 +1,33 @@
 import { RecipeCard } from "@/components/RecipeCard";
+import { RecipesTitleSearch } from "@/components/RecipesTitleSearch";
 import { ScanAndCookLogo } from "@/components/ScanAndCookLogo";
 import { Button } from "@/components/ui/button";
 import { displayRecipeSource } from "@/lib/recipes/displaySource";
 import { createClient } from "@/lib/supabase/server";
 import { Plus } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
-export default async function RecipesPage() {
+function sanitizeIlikeFragment(fragment: string): string {
+  return fragment.trim().replace(/[%_\\]/g, "");
+}
+
+export default async function RecipesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const { q: rawQ } = await searchParams;
+  const titleFragment = sanitizeIlikeFragment(rawQ ?? "");
+
   const supabase = await createClient();
-  const { data: rows, error } = await supabase
-    .from("recipes")
-    .select("*")
-    .order("created_at", { ascending: false });
+  let query = supabase.from("recipes").select("*");
+  if (titleFragment.length > 0) {
+    query = query.ilike("title", `%${titleFragment}%`);
+  }
+  const { data: rows, error } = await query.order("created_at", {
+    ascending: false,
+  });
 
   if (error) {
     console.error(error);
@@ -50,11 +66,29 @@ export default async function RecipesPage() {
           </Link>
         </Button>
       </div>
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-        {recipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
-      </div>
+      <Suspense
+        fallback={
+          <div
+            className="mb-6 h-9 max-w-md rounded-lg border border-foreground/22 bg-card shadow-sm dark:border-white/28 dark:bg-card dark:shadow-black/20"
+            aria-hidden
+          />
+        }
+      >
+        <RecipesTitleSearch initialQuery={rawQ?.trim() ?? ""} />
+      </Suspense>
+      {recipes.length === 0 ? (
+        <p className="text-muted-foreground">
+          {titleFragment.length > 0
+            ? "Nie znaleziono przepisów o takim tytule."
+            : "Nie masz jeszcze żadnych przepisów."}
+        </p>
+      ) : (
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {recipes.map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
