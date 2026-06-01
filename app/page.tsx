@@ -1,20 +1,16 @@
 import Link from "next/link";
-import { ArrowRight, Camera, Check, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Camera,
+  Check,
+  FileDown,
+  Rocket,
+  Sparkles,
+  UserPlus,
+} from "lucide-react";
 import { ScanAndCookLogo } from "@/components/ScanAndCookLogo";
 import { Button } from "@/components/ui/button";
 
-/**
- * Landing page (/).
- *
- * Cele:
- * 1. Dać rekruterowi kontekst zanim wejdzie w produkt
- * 2. Pokazać tech stack i atrybucję
- * 3. Trzymać próg wejścia na minimum (CTA "Wypróbuj teraz" -> /recipes)
- *
- * Anonymous sign-in i seedy nie wykonują się tu - dopiero w middleware
- * przy wejściu na /recipes. Dzięki temu odwiedziny landingu nie tworzą
- * w bazie wierszy ghost-userów.
- */
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-[#F1EFE8]">
@@ -77,6 +73,52 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section
+          className="mb-16 rounded-2xl border border-amber-200/80 bg-gradient-to-br from-amber-50/90 via-white to-orange-50/50 p-6 shadow-sm md:p-8"
+          aria-labelledby="roadmap-heading"
+        >
+          <div className="mb-5 flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-900">
+              <Rocket className="h-3.5 w-3.5" aria-hidden />W rozwoju
+            </span>
+            <p className="text-sm text-muted-foreground">
+              Aplikacja rośnie razem z Tobą — to dopiero początek.
+            </p>
+          </div>
+          <h2
+            id="roadmap-heading"
+            className="mb-3 text-xl font-semibold text-primary md:text-2xl"
+          >
+            Co planujemy dalej?
+          </h2>
+          <p className="mb-6 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+            Na razie możesz korzystać bez konta. W przyszłości pojawi się{" "}
+            <strong className="font-medium text-foreground">rejestracja</strong>
+            — wtedy zalogujesz się i odblokujesz kolejne możliwości, m.in.{" "}
+            <strong className="font-medium text-foreground">
+              eksport przepisów do PDF
+            </strong>{" "}
+            i sporo innych rzeczy. Śledź zmiany — będzie tylko lepiej.
+          </p>
+          <ul className="grid gap-3 sm:grid-cols-3">
+            <RoadmapItem
+              icon={<UserPlus className="h-5 w-5" />}
+              title="Konto i logowanie"
+              text="Bezpieczna rejestracja, żeby Twoja kolekcja była zawsze przy Tobie."
+            />
+            <RoadmapItem
+              icon={<FileDown className="h-5 w-5" />}
+              title="PDF z przepisów"
+              text="Jednym kliknięciem — do druku, na prezent albo do segregatora."
+            />
+            <RoadmapItem
+              icon={<Sparkles className="h-5 w-5" />}
+              title="I wiele więcej"
+              text="Nowe funkcje będą się pojawiać — masz pomysł? Daj znać."
+            />
+          </ul>
+        </section>
+
         <footer className="flex flex-col items-center justify-between gap-3 border-t border-foreground/10 pt-6 text-sm text-muted-foreground sm:flex-row">
           <span>
             Built by{" "}
@@ -105,6 +147,30 @@ interface StepProps {
   icon: React.ReactNode;
   title: string;
   description: string;
+}
+
+interface RoadmapItemProps {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}
+
+function RoadmapItem({ icon, title, text }: RoadmapItemProps) {
+  return (
+    <li className="flex gap-3 rounded-xl bg-white/80 p-4 shadow-sm ring-1 ring-amber-100/80 backdrop-blur-sm">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-100 text-amber-800">
+        {icon}
+      </div>
+      <div className="min-w-0 text-left">
+        <h3 className="mb-0.5 text-sm font-semibold text-foreground">
+          {title}
+        </h3>
+        <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
+          {text}
+        </p>
+      </div>
+    </li>
+  );
 }
 
 function Step({ number, icon, title, description }: StepProps) {

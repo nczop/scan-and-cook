@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, Camera, List, ListChecks, Pencil } from "lucide-react";
+import { BookOpen, List, ListChecks, Pencil, Sparkles } from "lucide-react";
 import { Badge, Button, Card, CardContent } from "@/components/ui";
 import { RecipeDeleteDialog } from "@/components/RecipeDeleteDialog";
 import type { Recipe } from "@/lib/schemas/recipe";
@@ -7,7 +7,7 @@ import type { Recipe } from "@/lib/schemas/recipe";
 export type RecipeCardData = Recipe & {
   id: string;
   isSeed?: boolean;
-  source?: "manual" | "scan";
+  source?: "manual" | "ai";
 };
 
 interface RecipeCardProps {
@@ -34,12 +34,13 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
           </Badge>
         )}
 
-        {recipe.source === "scan" && (
+        {recipe.source === "ai" && (
           <Badge
             variant="secondary"
-            className="mb-3 self-start bg-violet-50 text-violet-800 hover:bg-violet-50"
+            className="mb-3 self-start border border-blue-200/80 bg-blue-50 text-blue-950 hover:bg-blue-50"
           >
-            <Camera className="mr-1 h-3 w-3" />Z aparatu
+            <Sparkles className="mr-1 h-3 w-3" />
+            Odczytane z AI
           </Badge>
         )}
 

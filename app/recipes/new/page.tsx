@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
-import { NewRecipePageClient } from "./NewRecipePageClient";
+import NewRecipePageClient from "./NewRecipePageClient";
 
 function NewRecipeFallback() {
   return (

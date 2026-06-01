@@ -328,6 +328,8 @@ Małą sekcję projektu z 2-3 liniami opisu (problem → rozwiązanie → tech) 
 
 ## 11. Co świadomie zostawiamy poza MVP
 
+*(Część z poniższego ma rozwinięcie w §14 — Improvements.)*
+
 - Storage oryginalnego zdjęcia (`source_image_url`)
 - Upload zdjęcia z galerii jako osobna ścieżka
 - Kategorie i tagi
@@ -354,6 +356,15 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=         # tylko server-side, NIGDY do klienta
 ANTHROPIC_API_KEY=                  # tylko server-side
 ```
+
+## 14. Improvements (kolejne iteracje)
+
+Pomysły na rozwój po MVP — bez sztywnej kolejności; część nakłada się na to, co w §11 świadomie odłożyliśmy.
+
+- **Tagi / typ dania** — przy dodawaniu i edycji przepisu (np. deser, obiad, śniadanie, przekąska). W bazie: np. tablica tagów na wierszu `recipes`, osobna tabela słownikowa albo enum + ewentualne dopisanie tagów z promptu AI przy skanie.
+- **Wyszukiwanie** — filtrowanie listy po tagu (i po kilku tagach). Jeśli się da sensownie wykonać na darmowym tierze Supabase: także wyszukiwanie po składniku (tekst w polu `name` w `ingredients` jsonb — indeks GIN na `jsonb_path_ops` albo materialized view / pełnotekstowe zależnie od skali).
+- **Generowanie PDF po zalogowaniu** — eksport pojedynczego przepisu (lub zestawu) tylko dla użytkownika z potwierdzoną sesją (nie w trybie gościa-only, jeśli tak zdecydujemy produktowo). Technicznie: route handler lub `@react-pdf/renderer` / `pdf-lib` — spójny layout z podglądem w aplikacji.
+- **Oryginalne zdjęcie skanu** — zapisywać oryginał (lub sensownie skompresowaną kopię) w storage; w liście i na karcie przepisu pokazywać mały podgląd (thumbnail), z możliwością powiększenia (lightbox / pełny ekran), żeby dało się wrócić do źródła bez obciążania listy dużymi plikami.
 
 ---
 
