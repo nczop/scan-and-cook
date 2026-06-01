@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, BookOpen, Camera, Pencil } from "lucide-react";
+import { ArrowLeft, BookOpen, Pencil, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { RecipeDeleteDialog } from "@/components/RecipeDeleteDialog";
@@ -37,12 +37,13 @@ export function RecipeDetail({ recipe }: RecipeDetailProps) {
                   Przykład
                 </Badge>
               )}
-              {recipe.source === "scan" && (
+              {recipe.source === "ai" && (
                 <Badge
                   variant="secondary"
-                  className="bg-violet-50 text-violet-800 hover:bg-violet-50"
+                  className="border border-blue-200/80 bg-blue-50 text-blue-950 hover:bg-blue-50"
                 >
-                  <Camera className="mr-1 h-3 w-3" />Z aparatu
+                  <Sparkles className="mr-1 h-3 w-3" />
+                  Odczytane z AI
                 </Badge>
               )}
               {recipe.source === "manual" && (

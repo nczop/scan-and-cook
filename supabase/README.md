@@ -28,7 +28,7 @@ Plik `migrations/20260529120000_profiles_recipes_rls.sql` jest **kopą wdrożone
 1. **SQL Editor** w dashboardzie → **New query**.
 2. Wklej zawartość pliku `migrations/20260529120000_profiles_recipes_rls.sql` z tego folderu.
 3. **Run**. Sprawdź, czy nie ma błędów.
-4. Jeśli przepisy już działają, ale pojawia się błąd o kolumnie **`entry_source`**, uruchom osobno zawartość pliku **`migrations/20260530120000_recipes_entry_source.sql`** (dodaje kolumnę `manual` / `scan` dla badge w UI). Aplikacja przy zapisie najpierw próbuje z `entry_source`; bez tej kolumny i tak zapisze przepis (fallback), ale znacznik źródła w bazie będzie niedostępny do czasu migracji.
+4. Jeśli przepisy już działają, ale pojawia się błąd o kolumnie **`entry_source`**, uruchom osobno zawartość pliku **`migrations/20260530120000_recipes_entry_source.sql`** (dodaje kolumnę `manual` / `scan` dla źródła w UI: `scan` = zdjęcie → AI). Aplikacja przy zapisie najpierw próbuje z `entry_source`; bez tej kolumny i tak zapisze przepis (fallback), ale znacznik źródła w bazie będzie niedostępny do czasu migracji.
 
 ### Opcja B — Supabase CLI
 
@@ -45,7 +45,7 @@ pnpm dlx supabase db push
 |--------|------|
 | `public.profiles` | `id`, `email`, `display_name`, `is_anonymous` (domyślnie `true` w kolumnie), `created_at`. Trigger wstawia na start `id`, `email`, `is_anonymous` z `auth.users`. |
 | Trigger `on_auth_user_created` | Po utworzeniu użytkownika (także anonymous) wstawia wiersz w `profiles`. |
-| `public.recipes` | Przepisy: `user_id`, `title`, `ingredients` / `steps` jako **jsonb** (struktura jak w `lib/schemas/recipe.ts`), `notes`, `is_seed`, opcjonalnie `source_image_url`, kolumna `entry_source` (`manual` / `scan`, migracja `20260530120000_recipes_entry_source.sql`), znaczniki czasu. |
+| `public.recipes` | Przepisy: `user_id`, `title`, `ingredients` / `steps` jako **jsonb** (struktura jak w `lib/schemas/recipe.ts`), `notes`, `is_seed`, opcjonalnie `source_image_url`, kolumna `entry_source` (`manual` / `scan` — w aplikacji badge „Odczytane z AI”; migracja `20260530120000_recipes_entry_source.sql`), znaczniki czasu. |
 | Trigger `recipes_set_updated_at` | Przed `update` na `recipes` ustawia `updated_at`. |
 | RLS | `profiles` i `recipes` — **authenticated** widzi i modyfikuje tylko własne dane (`auth.uid()`). |
 | `grant … authenticated` | Jawne uprawnienia do `select`/`update` na `profiles` oraz pełny CRUD na `recipes` (RLS i tak filtruje). |

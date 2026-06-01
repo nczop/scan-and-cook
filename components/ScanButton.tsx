@@ -1,37 +1,17 @@
 "use client";
 
-import {
-  useRef,
-  useState,
-  type ComponentProps,
-  type ReactNode,
-} from "react";
+import { useRef, useState, type ComponentProps, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-interface ScanButtonProps
-  extends Omit<ComponentProps<"button">, "type" | "onClick"> {
-  /** Callback z wybranym/upuszczonym plikiem obrazu. */
+interface ScanButtonProps extends Omit<
+  ComponentProps<"button">,
+  "type" | "onClick"
+> {
   onFileSelected: (file: File) => void;
-  /**
-   * Zawartość przycisku (ikona, tekst, cała karta — cokolwiek).
-   * Cały obszar `children` jest klikalny i akceptuje drop.
-   */
   children: ReactNode;
   className?: string;
 }
 
-/**
- * Przycisk wywołujący wybór pliku obrazu.
- *
- * Cechy:
- * - Klik otwiera natywny picker (na mobile: aparat / biblioteka / pliki, na desktop: file dialog)
- * - Drag&drop działa na desktopie (na mobile pomijane przez przeglądarkę)
- * - Reset value po wyborze pozwala wybrać ten sam plik ponownie
- * - Stan drag-over przekazany przez data-attribute (do stylowania w Tailwindzie)
- *
- * Uwaga: NIE używamy `capture="environment"` żeby user mógł wybrać między
- * aparatem a galerią/plikami (na iOS sam picker ma trzy opcje).
- */
 export function ScanButton({
   onFileSelected,
   children,

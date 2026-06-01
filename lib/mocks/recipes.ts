@@ -33,7 +33,7 @@ export const MOCK_RECIPES: (RecipeCardData & {
   {
     id: "2",
     title: "Sernik krakowski",
-    source: "scan",
+    source: "ai",
     ingredients: [
       { amount: 1, unit: "kg", customUnit: null, name: "twarogu" },
       { amount: 6, unit: null, customUnit: null, name: "jaj" },
