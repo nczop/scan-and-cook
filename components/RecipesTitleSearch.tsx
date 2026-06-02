@@ -1,9 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -50,16 +48,13 @@ export function RecipesTitleSearch({ initialQuery }: RecipesTitleSearchProps) {
     return () => window.clearTimeout(id);
   }, [value, pathname, router, searchParams]);
 
-  const hasActiveFilter =
-    value.trim().length > 0 || (searchParams.get("q")?.trim() ?? "").length > 0;
-
   return (
     <div
-      className="mb-6 flex max-w-md flex-col gap-2 sm:flex-row sm:items-center"
+      className="mb-6 max-w-md"
       role="search"
       aria-label="Szukaj przepisów po tytule"
     >
-      <div className="relative min-w-0 flex-1">
+      <div className="relative">
         <Search
           className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground"
           aria-hidden
@@ -74,16 +69,6 @@ export function RecipesTitleSearch({ initialQuery }: RecipesTitleSearchProps) {
           enterKeyHint="search"
         />
       </div>
-      {hasActiveFilter ? (
-        <Button
-          type="button"
-          variant="ghost"
-          asChild
-          className="w-full shrink-0 sm:w-auto"
-        >
-          <Link href="/recipes">Wyczyść</Link>
-        </Button>
-      ) : null}
     </div>
   );
 }
